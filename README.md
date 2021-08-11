@@ -28,6 +28,7 @@ key | description | example
 **k1 (Optional)** | Midea AC Device's k1, V3 is required. | CFFA10FC...(Length 64)
 **temp_step (Optional)** | Step size for temperature set point, default is 1.0 | 0.5
 **prompt_tone (Optional)** | Prompt Tone, default is true. | false
+**screen_display (Optional)** | Display the LED, default is true. | false
 **keep_last_known_online_state (Optional)** | Set this to true if you see too many  `unavailable` in log. | true
 **use_fan_only_workaround (Optional)** | Set this to true if you need to turn off device updates because they turn device on and to fan_only | true
 
