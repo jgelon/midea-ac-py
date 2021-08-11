@@ -33,6 +33,7 @@ CONF_TOKEN = 'token'
 CONF_K1 = 'k1'
 CONF_PORT = 'port'
 CONF_PROMPT_TONE = 'prompt_tone'
+CONF_SCREEN_DISPLAY = 'screen_display'
 CONF_TEMP_STEP = 'temp_step'
 CONF_INCLUDE_OFF_AS_STATE = 'include_off_as_state'
 CONF_USE_FAN_ONLY_WORKAROUND = 'use_fan_only_workaround'
@@ -47,6 +48,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_K1, default=""): cv.string,
     vol.Optional(CONF_PORT, default=6444): vol.Coerce(int),
     vol.Optional(CONF_PROMPT_TONE, default=True): vol.Coerce(bool),
+    vol.Optional(CONF_SCREEN_DISPLAY, default=True): vol.Coerce(bool),
     vol.Optional(CONF_TEMP_STEP, default=1.0): vol.Coerce(float),
     vol.Optional(CONF_INCLUDE_OFF_AS_STATE, default=True): vol.Coerce(bool),
     vol.Optional(CONF_USE_FAN_ONLY_WORKAROUND, default=False): vol.Coerce(bool),
@@ -69,6 +71,7 @@ async def async_setup_platform(hass, config, async_add_entities,
     device_k1 = config.get(CONF_K1)
     device_port = config.get(CONF_PORT)
     prompt_tone = config.get(CONF_PROMPT_TONE)
+    screen_display = config.get(CONF_SCREEN_DISPLAY)
     temp_step = config.get(CONF_TEMP_STEP)
     include_off_as_state = config.get(CONF_INCLUDE_OFF_AS_STATE)
     use_fan_only_workaround = config.get(CONF_USE_FAN_ONLY_WORKAROUND)
@@ -79,6 +82,7 @@ async def async_setup_platform(hass, config, async_add_entities,
         device.authenticate(device_k1, device_token)
     # device = client.setup()
     device.prompt_tone = prompt_tone
+    device.screen_display = screen_display
     device.keep_last_known_online_state = keep_last_known_online_state
     entities = []
     entities.append(MideaClimateACDevice(
